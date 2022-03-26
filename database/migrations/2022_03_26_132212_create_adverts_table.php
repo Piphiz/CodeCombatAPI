@@ -18,7 +18,7 @@ class CreateAdvertsTable extends Migration
             $table->string('name');
             $table->string('file')->nullable();
             $table->text('script_html')->nullable();
-            $table->boolean('status')->nullable();
+            $table->boolean('status');
             $table->timestamp('start_date')->useCurrent()->nullable();
             $table->timestamp('end_date')->useCurrent()->nullable();
             $table->timestamps();
