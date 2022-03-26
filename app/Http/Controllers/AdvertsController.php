@@ -7,6 +7,7 @@ use App\Http\Resources\AdvertResource;
 use App\Models\Advert;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdvertsController extends Controller
 {
@@ -47,6 +48,14 @@ class AdvertsController extends Controller
     {
         try {
             $data = $request->all();
+
+            if($request->has('file')){
+                $imagename = $data['name'] .'_'. time() .'_'. $request->file->getClientOriginalName();
+                $path = $request->file('file')->storeAs('images', $imagename , 'public');;
+                $data['file'] = Storage::url($path);
+            }else{
+                $data['file'] = '';
+            }
 
             $this->advert->create($data);
             return response()->json(["Successfully created "],201);
