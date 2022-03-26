@@ -16,11 +16,11 @@ class CreateAdvertsTable extends Migration
         Schema::create('adverts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('file');
-            $table->string('script_html');
-            $table->boolean('status');
-            $table->timestamp('start_date')->useCurrent();
-            $table->timestamp('end_date')->useCurrent();
+            $table->string('file')->nullable();
+            $table->string('script_html', 10000)->nullable();
+            $table->boolean('status')->nullable();
+            $table->timestamp('start_date')->useCurrent()->nullable();
+            $table->timestamp('end_date')->useCurrent()->nullable();
             $table->timestamps();
         });
     }
