@@ -24,9 +24,13 @@ class AdvertRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'file'  => 'required_without:script_html',
+            'name' => 'required|string',
+            'file'  => 'required_without:script_html|image',
             'script_html' => 'required_without:file',
+            'status' => 'required|boolean',
+            'start_date' => "date",
+            'end_date' => "date",
+
         ];
     }
 }

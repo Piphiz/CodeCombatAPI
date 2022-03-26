@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdvertRequest;
 use App\Http\Resources\AdvertResource;
 use App\Models\Advert;
 use Carbon\Carbon;
@@ -29,8 +30,28 @@ class AdvertsController extends Controller
                 ['start_date', '=',null],
                 ['end_date', '=',null],
             ])
-            ->get();
+            ->paginate('10');
 
         return response()->json(['data' => AdvertResource::collection($advert)], 200);
+    }
+
+    public function allAdverts()
+    {
+        $advert = $this->advert->paginate('10');
+
+        return response()->json(['data' => AdvertResource::collection($advert)], 200);
+    }
+
+
+    public function store(AdvertRequest $request)
+    {
+        try {
+            $data = $request->all();
+
+            $this->advert->create($data);
+            return response()->json(["Successfully created "],201);
+        } catch (\Exception $e) {
+            return response()->json(["Some error has occurred"],422);
+        }
     }
 }
