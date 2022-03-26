@@ -18,7 +18,7 @@ class CreateAdvertsTable extends Migration
             $table->string('name');
             $table->string('file');
             $table->string('script_html');
-            $table->boolean(status);
+            $table->boolean('status');
             $table->timestamp('start_date');
             $table->timestamp('end_date');
             $table->timestamps();
