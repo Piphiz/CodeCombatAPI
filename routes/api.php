@@ -32,3 +32,13 @@ Route::get('user', [UserController::class, 'index']);
 Route::post('user/create', [UserController::class, 'store']);
 
 Route::get('/adverts', [AdvertsController::class, 'index']);
+
+Route::group([
+    // 'middleware' => ['jwt.verify'],
+    'prefix' => 'adverts'
+], function ($router) {
+
+    Route::get('registers', [AdvertsController::class, 'allAdverts']);
+    Route::post('add', [AdvertsController::class, 'store']);
+
+});
