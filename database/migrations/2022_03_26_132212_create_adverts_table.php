@@ -15,6 +15,12 @@ class CreateAdvertsTable extends Migration
     {
         Schema::create('adverts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('file');
+            $table->string('script_html');
+            $table->boolean(status);
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
             $table->timestamps();
         });
     }
